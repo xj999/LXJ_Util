@@ -17,7 +17,6 @@ import org.litepal.crud.DataSupport;
 
 import java.util.List;
 
-
 public class MainActivity extends Activity implements View.OnClickListener {
     private Button btn_save, btn_query, btn_delete;
     private MyToast toast;
@@ -31,6 +30,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
         initData();
         initClick();
         Public_function.getTime(this);
+
+
+
 
     }
 

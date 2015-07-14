@@ -3,6 +3,7 @@
 buildscript {
     repositories {
         jcenter()
+        maven { url "https://github.com/xj999/mvn-repo/tree/master/repository" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.2.3'
@@ -13,7 +14,25 @@ buildscript {
 
 allprojects {
     repositories {
+        /**
+         * 依赖中央库
+         */
         jcenter()
+        /**
+         * 本地依赖
+         */
+        maven {
+            url "file://F:/github_repo/mvn-repo/repository"
+        }
+        /**
+         * github远程依赖(/raw/必写)
+         */
+        maven {
+            url "https://github.com/xj999/mvn-repo/raw/master/repository"
+        }
+        /**
+         * 依赖到nexus(带帐号密码)
+         */
         maven {
             credentials {
                 username 'admin'
