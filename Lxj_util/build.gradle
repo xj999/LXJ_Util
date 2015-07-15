@@ -30,11 +30,8 @@ android {
         }
     }
 }
-def getDate() {
-    def date = new Date()
-    def formattedDate = date.format('yyyyMMddHHmm')
-    return formattedDate
-}
+
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.jars:litepal:1.2.1'
