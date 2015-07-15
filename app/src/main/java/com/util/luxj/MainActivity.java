@@ -3,7 +3,6 @@ package com.util.luxj;
 import android.app.Activity;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +13,9 @@ import com.util.luxj.mylibrary.Public_function;
 import com.util.luxj.widget.MyToast;
 
 import org.litepal.crud.DataSupport;
+import org.litepal.tablemanager.Connector;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -30,8 +31,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         initData();
         initClick();
         Public_function.getTime(this);
-
-
 
 
     }
@@ -78,15 +77,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_save:
-                for (int i = 0; i < 10; i++) {
-                    Student student = new Student();
-                    student.setAge(i);
-                    student.setName(getString(R.string.app_name) + "=" + i);
-                    student.setDesc(getString(R.string.app_name1) + "=" + i);
-                    student.setSex(i % 2);
-                    student.save();
-                }
-                toast.showLong("save_success");
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        long start = System.currentTimeMillis();
+                        List<Student> studentList = new ArrayList<Student>();
+                        for (int i = 0; i < 5000; i++) {
+                            Student student = new Student();
+                            student.setAge(i);
+                            student.setName(getString(R.string.app_name) + "=" + i);
+                            student.setDesc(getString(R.string.app_name1) + "=" + i);
+                            student.setSex(i % 2);
+                            studentList.add(student);
+                        }
+                        DataSupport.saveAll(studentList);
+                        toast.showLong("end " + (System.currentTimeMillis() - start));
+                    }
+                }).start();
                 break;
 
             case R.id.btn_query:
@@ -95,21 +102,32 @@ public class MainActivity extends Activity implements View.OnClickListener {
                     public void run() {
                         Cursor cursor = null;
                         try {
-//                            cursor = Connector.getDatabase().rawQuery("select * from Student order by id",
-//                                    null);
-//                            if (cursor.moveToFirst()) {
-//                                do {
-//                                    long id = cursor.getLong(cursor.getColumnIndex("id"));
-//                                    String name = cursor.getString(cursor.getColumnIndex("name"));
-//                                    String desc = cursor.getString(cursor.getColumnIndex("desc"));
-//                                    int age = cursor.getInt(cursor.getColumnIndex("age"));
-//                                    int sex = cursor.getInt(cursor.getColumnIndex("sex"));
+                            long start_no = System.currentTimeMillis();
+                            cursor = Connector.getDatabase().rawQuery("select * from Student order by id limit 5000",
+                                    null);
+                            List<Student> studentList = new ArrayList<Student>();
+                            if (cursor.moveToFirst()) {
+                                do {
+                                    long id = cursor.getLong(cursor.getColumnIndex("id"));
+                                    String name = cursor.getString(cursor.getColumnIndex("name"));
+                                    String desc = cursor.getString(cursor.getColumnIndex("desc"));
+                                    int age = cursor.getInt(cursor.getColumnIndex("age"));
+                                    int sex = cursor.getInt(cursor.getColumnIndex("sex"));
 //                                    Log.e(TAG, "id = " + id + " desc = " + desc + " name = " + name + " age = " + age + " sex = " + sex);
-//                                } while (cursor.moveToNext());
-//                            }
-                            List<Student> studentList = DataSupport.where("id<30").limit(10).find(Student.class);
+                                    Student student = new Student();
+                                    student.setAge(age);
+                                    student.setName(name);
+                                    student.setDesc(desc);
+                                    student.setSex(sex);
+                                    studentList.add(student);
+                                } while (cursor.moveToNext());
+                                System.out.println("end  no=========" + (System.currentTimeMillis() - start_no + " size===" + studentList.size()));
+                            }
+                            long start_fs = System.currentTimeMillis();
+                            List<Student> mStudentList = DataSupport.limit(5000).find(Student.class);
+                            System.out.println("end  ====" + (System.currentTimeMillis() - start_fs) + " size===" + mStudentList.size());
                             for (Student sb : studentList) {
-                                Log.e(TAG, "id = " + sb.getId() + " desc = " + sb.getDesc() + " name = " + sb.getName() + " age = " + sb.getAge() + " sex = " + sb.getSex());
+//                                Log.e(TAG, "id = " + sb.getId() + " desc = " + sb.getDesc() + " name = " + sb.getName() + " age = " + sb.getAge() + " sex = " + sb.getSex());
                             }
 
                         } catch (Exception e) {
