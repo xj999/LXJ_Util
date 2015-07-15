@@ -15,3 +15,8 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-keep class org.litepal.**{*;}
+-keep class com.util.luxj.mylibrary.**{*;}
+-keep class **.R$* {*;}
+-keep public class * extends android.app.Activity
+
