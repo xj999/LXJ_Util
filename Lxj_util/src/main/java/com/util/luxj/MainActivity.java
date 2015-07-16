@@ -1,6 +1,7 @@
 package com.util.luxj;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
@@ -39,6 +40,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         btn_save = (Button) findViewById(R.id.btn_save);
         btn_query = (Button) findViewById(R.id.btn_query);
         btn_delete = (Button) findViewById(R.id.btn_delete);
+        findViewById(R.id.btn_select_album).setOnClickListener(this);
     }
 
     private void initData() {
@@ -76,6 +78,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.btn_select_album:
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, AlbumGridActivity.class);
+                startActivity(intent);
+                break;
             case R.id.btn_save:
                 new Thread(new Runnable() {
                     @Override
