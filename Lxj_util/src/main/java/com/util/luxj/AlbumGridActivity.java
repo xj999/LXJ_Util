@@ -2,7 +2,6 @@ package com.util.luxj;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,22 +16,25 @@ import com.util.luxj.model.Picture;
 import com.util.luxj.util.ScanFolder;
 import com.util.luxj.widget.MyToast;
 
+import java.util.HashMap;
+
 /**
  * Created by Luxj on 2015/7/16 11:12
  */
 public class AlbumGridActivity extends Activity implements AlbumCheckListener {
     GridView mAlbumGrid;
-
-    private ProgressDialog mProgressDialog;
     private MyToast mToast;
     private Picture[] mDir;
     private AlbumGridAdapter mAdapter;
     private ActionBar mActionBar;
-    private int mSsize;
     private String mSelectDirName;
     private ScanFolder mScanFolder;
     private static final int SCANSUCCESS = 1;
     private static final int SCANERROR = 0;
+    private int mSize = 5;
+    private int mNowSize;
+    private HashMap<String, Picture[]> mDirCacheMap;
+    private String mNowDirName = "ALL";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,31 +54,53 @@ public class AlbumGridActivity extends Activity implements AlbumCheckListener {
     }
 
     private void initData() {
-        mScanFolder = new ScanFolder();
+        mDirCacheMap = new HashMap<>();
+        mScanFolder = ScanFolder.getInstance();
         mToast = new MyToast(this);
         mAdapter = new AlbumGridAdapter(this, this);
-        mAdapter.setSize(5);
+        mAdapter.setSize(mSize, mNowSize);
         getAllImages();
-        Intent mIntent = getIntent();
-        if (mIntent != null) {
-            mSelectDirName = mIntent.getStringExtra("dir_size");
-//            if (!mSelectDirName.isEmpty()) {
-//
-//            }
-        }
     }
 
     private void getAllImages() {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                mDir = mScanFolder.getFolder(AlbumGridActivity.this, mDir);
+                mDir = mScanFolder.getAllImagerForSDCard(AlbumGridActivity.this);
                 Message e = new Message();
                 if (mDir != null) {
+                    mDirCacheMap.put("ALL", mDir);
                     e.what = SCANSUCCESS;
                 } else {
                     e.what = SCANERROR;
                 }
+                mHandler.sendMessage(e);
+
+            }
+        }).start();
+    }
+
+    private void getImagesForDir(final String aDir) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Message e = new Message();
+                if (!mDirCacheMap.containsKey(aDir)) {
+                    L.i("不存在缓存");
+                    mDir = mScanFolder.getImagesForFoler(AlbumGridActivity.this, aDir);
+                    if (mDir != null) {
+                        e.what = SCANSUCCESS;
+                        mDirCacheMap.put(aDir, mDir);
+                    } else {
+                        e.what = SCANERROR;
+                    }
+                } else {
+                    L.i("存在缓存");
+                    mDir = mDirCacheMap.get(aDir);
+                    e.what = SCANSUCCESS;
+                }
+
+
                 mHandler.sendMessage(e);
 
             }
@@ -97,7 +121,7 @@ public class AlbumGridActivity extends Activity implements AlbumCheckListener {
     };
 
     private void setDataView() {
-        L.i("加载完成");
+        mAdapter.setSize(mSize, mNowSize);
         mAdapter.setData(mDir);
     }
 
@@ -105,7 +129,9 @@ public class AlbumGridActivity extends Activity implements AlbumCheckListener {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
+                Intent intent = new Intent();
+                intent.setClass(AlbumGridActivity.this, AlbumListActivity.class);
+                startActivityForResult(intent, 100);
                 return true;
             default:
                 break;
@@ -115,7 +141,30 @@ public class AlbumGridActivity extends Activity implements AlbumCheckListener {
 
 
     @Override
-    public void onPhotoSelected(String path, boolean select) {
-        L.i("path====" + path + "selecet" + select);
+    public void onPhotoSelected(String path, int position, boolean select, int select_count) {
+        mNowSize = select_count;
+        mDir[position].setSelect(select);
+        L.i("将" + position + "张图片"+select);
+        mDirCacheMap.put(mNowDirName, mDir);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            switch (requestCode) {
+                case 100:
+                    switch (resultCode) {
+                        case 100:
+                            mNowDirName = data.getStringExtra("mDirName");
+                            getImagesForDir(mNowDirName);
+                            break;
+                        case 101:
+                            finish();
+                            break;
+                    }
+                    break;
+            }
+        }
     }
 }

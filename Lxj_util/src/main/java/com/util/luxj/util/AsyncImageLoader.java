@@ -45,7 +45,7 @@ public class AsyncImageLoader {
      * 默认图片
      */
     private static DisplayImageOptions options = new DisplayImageOptions.Builder().showImageOnLoading(R.mipmap.general_default_head).showImageForEmptyUri(R.mipmap.general_default_head)
-            .showImageOnFail(R.mipmap.general_default_head).cacheInMemory(true).cacheOnDisc(true).considerExifParams(true)
+            .showImageOnFail(R.mipmap.general_default_head).cacheInMemory(true).cacheOnDisk(true).considerExifParams(true)
                     // .displayer(new RoundedBitmapDisplayer(20))//设置圆角
             .build();
 

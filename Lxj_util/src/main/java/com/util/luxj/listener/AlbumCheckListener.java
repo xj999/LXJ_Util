@@ -5,5 +5,5 @@ package com.util.luxj.listener;
  * Created by Luxj on 2015/7/16 15:10
  */
 public interface AlbumCheckListener {
-    public void onPhotoSelected(String path, boolean select);
+    public void onPhotoSelected(String path, int position, boolean select, int select_count);
 }

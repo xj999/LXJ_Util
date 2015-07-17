@@ -24,7 +24,7 @@ public class AlbumGridAdapter extends BaseAdapter {
     private LayoutInflater mLayoutInflater;
     private AsyncImageLoader imageLoader = AsyncImageLoader.getInstance();
     private AlbumCheckListener mAlbumCheckListener;
-    private int mSize, mNowSize;
+    private int mSize, mNowSize, position;
 
     public AlbumGridAdapter(Context aContext, AlbumCheckListener aListener) {
         mLayoutInflater = LayoutInflater.from(aContext);
@@ -38,8 +38,9 @@ public class AlbumGridAdapter extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-    public void setSize(int aSize) {
+    public void setSize(int aSize, int aNowSize) {
         mSize = aSize;
+        mNowSize = aNowSize;
     }
 
     @Override
@@ -75,6 +76,7 @@ public class AlbumGridAdapter extends BaseAdapter {
         } else {
             holder = (Holder) convertView.getTag();
         }
+        this.position = position;
         if (mImgArray[position].isSelect()) {
             holder.selected_img.setChecked(true);
         } else {
@@ -82,7 +84,8 @@ public class AlbumGridAdapter extends BaseAdapter {
         }
         holder.image.setTag(holder);
         holder.image.setOnClickListener(mOnClickListener);
-        holder.selected_img.setTag(mImgArray[position].getPath());
+        holder.selected_img.setTag(R.id.tag_second, position);
+        holder.selected_img.setTag(R.id.tag_first, mImgArray[position].getPath());
         holder.selected_img.setOnCheckedChangeListener(mOnCheckedChangeListener);
         imageLoader.setSyncHeadImages(holder.image, mImgArray[position].getPath());
         return convertView;
@@ -98,8 +101,7 @@ public class AlbumGridAdapter extends BaseAdapter {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             if (mAlbumCheckListener != null) {
-
-                mAlbumCheckListener.onPhotoSelected(buttonView.getTag().toString(), isChecked);
+                mAlbumCheckListener.onPhotoSelected(buttonView.getTag(R.id.tag_first).toString(), (Integer) buttonView.getTag(R.id.tag_second), isChecked, mNowSize);
             }
         }
     };
