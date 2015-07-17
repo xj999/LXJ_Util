@@ -5,4 +5,12 @@
     <string name="action_settings">Settings</string>
     <item name="tag_first" type="id"></item>
     <item name="tag_second" type="id"></item>
+    <string name="title_activity_camera">CameraActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="main_sql">数据库</string>
+    <string name="main_album">相册</string>
+    <string name="main_camera">相机</string>
+    <string name="take_picture">拍照</string>
+
+
 </resources>

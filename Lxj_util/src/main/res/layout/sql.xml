@@ -7,24 +7,34 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.util.luxj.MainActivity">
+    tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btn_into_sql"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/main_sql" />
+        android:text="@string/hello_world" />
 
     <Button
-        android:id="@+id/btn_into_album"
+        android:id="@+id/btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/main_album" />
+        android:text="Save" />
 
     <Button
-        android:id="@+id/btn_into_camera"
+        android:id="@+id/btn_query"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/main_camera" />
+        android:text="Query" />
 
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="delete" />
+
+    <Button
+        android:id="@+id/btn_select_album"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="select_album" />
 </LinearLayout>
