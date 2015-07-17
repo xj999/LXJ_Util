@@ -59,6 +59,9 @@ public class AlbumListActivity extends Activity implements AdapterView.OnItemCli
 
     }
 
+    /**
+     * 获取本机所有含有图片的文件夹列表
+     */
     private void getImagesFolder() {
         new Thread(new Runnable() {
             @Override

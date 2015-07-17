@@ -62,6 +62,9 @@ public class AlbumGridActivity extends Activity implements AlbumCheckListener {
         getAllImages();
     }
 
+    /**
+     * 获取所有本地图片jpg/png格式
+     */
     private void getAllImages() {
         new Thread(new Runnable() {
             @Override
@@ -80,6 +83,11 @@ public class AlbumGridActivity extends Activity implements AlbumCheckListener {
         }).start();
     }
 
+    /**
+     * 根据文件夹名称获取该文件夹内所有图片
+     *
+     * @param aDir
+     */
     private void getImagesForDir(final String aDir) {
         new Thread(new Runnable() {
             @Override
@@ -95,7 +103,6 @@ public class AlbumGridActivity extends Activity implements AlbumCheckListener {
                         e.what = SCANERROR;
                     }
                 } else {
-                    L.i("存在缓存");
                     mDir = mDirCacheMap.get(aDir);
                     e.what = SCANSUCCESS;
                 }
@@ -120,6 +127,9 @@ public class AlbumGridActivity extends Activity implements AlbumCheckListener {
         }
     };
 
+    /**
+     * 填充数据
+     */
     private void setDataView() {
         mAdapter.setSize(mSize, mNowSize);
         mAdapter.setData(mDir);
@@ -139,12 +149,18 @@ public class AlbumGridActivity extends Activity implements AlbumCheckListener {
         return super.onOptionsItemSelected(item);
     }
 
-
+    /**
+     * 选择照片的回调
+     *
+     * @param path
+     * @param position
+     * @param select
+     * @param select_count
+     */
     @Override
     public void onPhotoSelected(String path, int position, boolean select, int select_count) {
         mNowSize = select_count;
         mDir[position].setSelect(select);
-        L.i("将" + position + "张图片"+select);
         mDirCacheMap.put(mNowDirName, mDir);
     }
 
