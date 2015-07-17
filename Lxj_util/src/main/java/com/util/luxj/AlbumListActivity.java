@@ -20,6 +20,7 @@ import com.util.luxj.widget.MyToast;
 import java.util.List;
 
 /**
+ * 相册列表
  * Created by Luxj on 2015/7/17 10:59
  */
 public class AlbumListActivity extends Activity implements AdapterView.OnItemClickListener {
