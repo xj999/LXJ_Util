@@ -150,7 +150,7 @@ public class ScanFolder {
             String mSelection = MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME + " = '" + mPath + "'";
             Uri mImageUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
             ContentResolver mContentResolver = aContext.getContentResolver();
-            L.i("开始查询" + mPath + "下的文件");
+            L.i("开始查询" + mPath + "下的图片");
             Cursor mCursor = mContentResolver.query(mImageUri, null, "(" + MediaStore.Images.Media.MIME_TYPE + "=? or " + MediaStore.Images.Media.MIME_TYPE + "=?) and " + mSelection, new String[]{"image/jpeg",
                     "image/png"}, MediaStore.Images.Media.DATE_MODIFIED);
             if (mCursor == null)
