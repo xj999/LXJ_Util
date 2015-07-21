@@ -12,7 +12,7 @@ android {
         versionName "1.0"
     }
     signingConfigs {
-        myConfig {
+        release {
             storeFile file("../android.keystore")      //签名文件
             storePassword "epweike"
             keyAlias "android.keystore"
@@ -22,15 +22,64 @@ android {
     lintOptions {
         abortOnError false
     }
+    //渠道包
+    productFlavors {
+        epweike {}
+        wangyi {}
+        anzhi {}
+        appchina {}
+        gfan {}
+        mumayi {}
+        eoemarket {}
+        nduoa {}
+        borpor {}
+        hiapk {}
+        Store91 {}
+        Store520 {}
+        liqucn {}
+        baidu {}
+        Store360 {}
+        wandoujia {}
+        myapp {}
+        xiaomisogou {}
+        sohu {}
+        paojiao {}
+        lenovo {}
+        huawei {}
+        fpwap {}
+        gunxueqiu {}
+        Store8 {}
+        candou {}
+        meizu {}
+        zol {}
+    }
+
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
     buildTypes {
         release {
-            signingConfig signingConfigs.myConfig
+            signingConfig signingConfigs.release
             minifyEnabled true
+            zipAlignEnabled true
             proguardFiles 'proguard-rules.pro'
+            shrinkResources true
+//            applicationVariants.all { variant ->
+//                variant.outputs.each { output ->
+//                    def outputFile = output.outputFile
+//                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+//                        def fileName = "MyUtil_${defaultConfig.versionName}_${releaseTime()}.apk"
+//                        output.outputFile = new File(outputFile.parent, fileName)
+//                    }
+//                }
+//            }
         }
     }
 }
 
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("GMT+8"))
+}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])

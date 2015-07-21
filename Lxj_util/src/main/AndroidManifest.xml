@@ -37,5 +37,7 @@
             android:name=".CameraActivity"
             android:label="@string/app_name"></activity>
     </application>
-
+    <meta-data
+        android:name="UMENG_CHANNEL"
+        android:value="${UMENG_CHANNEL_VALUE}" />
 </manifest>
