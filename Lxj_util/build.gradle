@@ -81,10 +81,12 @@ def releaseTime() {
     return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("GMT+8"))
 }
 
+
+
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.jars:litepal:1.2.1'
-    compile 'com.libs:MyLib:1.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
 
 }

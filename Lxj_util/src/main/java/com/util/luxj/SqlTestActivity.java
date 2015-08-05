@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.util.luxj.model.Student;
-import com.util.luxj.mylibrary.Public_function;
 import com.util.luxj.widget.MyToast;
 
 import org.litepal.crud.DataSupport;
@@ -31,8 +30,6 @@ public class SqlTestActivity extends Activity implements View.OnClickListener {
         initView();
         initData();
         initClick();
-        Public_function.getTime(this);
-
 
     }
 
@@ -93,7 +90,7 @@ public class SqlTestActivity extends Activity implements View.OnClickListener {
                             Student student = new Student();
                             student.setAge(i);
                             student.setName(getString(R.string.app_name) + "=" + i);
-                            student.setDesc(getString(R.string.app_name1) + "=" + i);
+                            student.setDesc("=" + i);
                             student.setSex(i % 2);
                             studentList.add(student);
                         }

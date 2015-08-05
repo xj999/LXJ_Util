@@ -27,4 +27,9 @@
         android:layout_height="wrap_content"
         android:text="@string/main_camera" />
 
+    <Button
+        android:id="@+id/btn_into_anim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_anim" />
 </LinearLayout>
