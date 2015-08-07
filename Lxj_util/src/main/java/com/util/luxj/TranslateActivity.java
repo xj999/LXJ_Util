@@ -36,10 +36,10 @@ public class TranslateActivity extends Activity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.btn:
                 if (flag) {
-                    startTopAnim(top);
+                    startTopAnim(bottom);
                     startBtnAnim(v);
                 } else {
-                    endTopAnim(top);
+                    endTopAnim(bottom);
                     endTopAnim(v);
                 }
                 break;
@@ -57,7 +57,7 @@ public class TranslateActivity extends Activity implements View.OnClickListener 
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                top.setVisibility(View.GONE);
+                bottom.setVisibility(View.GONE);
                 flag = false;
             }
 
@@ -101,7 +101,7 @@ public class TranslateActivity extends Activity implements View.OnClickListener 
         anim.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
-                top.setVisibility(View.VISIBLE);
+                bottom.setVisibility(View.VISIBLE);
             }
 
             @Override

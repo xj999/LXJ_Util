@@ -82,11 +82,11 @@ def releaseTime() {
 }
 
 
-
-
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.jars:litepal:1.2.1'
+    compile 'com.libs:MyLib:1.0'
+    compile 'com.android.support:support-v4:22.0.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
 
 }

@@ -31,6 +31,7 @@ public class SqlTestActivity extends Activity implements View.OnClickListener {
         initData();
         initClick();
 
+
     }
 
     private void initView() {
@@ -90,7 +91,7 @@ public class SqlTestActivity extends Activity implements View.OnClickListener {
                             Student student = new Student();
                             student.setAge(i);
                             student.setName(getString(R.string.app_name) + "=" + i);
-                            student.setDesc("=" + i);
+                            student.setDesc(getString(R.string.app_name) + "=" + i);
                             student.setSex(i % 2);
                             studentList.add(student);
                         }
