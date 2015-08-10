@@ -30,11 +30,21 @@ public class MyFragment_Activity extends FragmentActivity {
     private int bmpW;//横线图片宽度
     private int offset;//图片移动的偏移量
     private ArrayList<TaskType> tasklist;
+    public static MyFragment_Activity instance;
+
+    public static MyFragment_Activity newInstance() {
+        if (instance == null) {
+            instance = new MyFragment_Activity();
+        }
+        return instance;
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_activity);
+        instance = this;
         pager = (ViewPager) this.findViewById(R.id.viewpager);
         tabStrip = (PagerTabStrip) this.findViewById(R.id.tabstrip);
         //取消tab下面的长横线
@@ -134,5 +144,13 @@ public class MyFragment_Activity extends FragmentActivity {
         }
     }
 
+    /**
+     * 跳转
+     *
+     * @param page
+     */
+    public void selectPage(int page) {
+        pager.setCurrentItem(page);
+    }
 
 }
