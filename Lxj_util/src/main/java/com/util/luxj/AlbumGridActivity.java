@@ -51,6 +51,7 @@ public class AlbumGridActivity extends Activity implements AlbumCheckListener {
         mActionBar.setDisplayHomeAsUpEnabled(true);
         mAlbumGrid = (GridView) findViewById(R.id.album_grid);
         mAlbumGrid.setAdapter(mAdapter);
+        mAdapter.hashCode();
     }
 
     private void initData() {

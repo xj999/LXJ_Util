@@ -22,6 +22,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.btn_into_album).setOnClickListener(this);
         findViewById(R.id.btn_into_camera).setOnClickListener(this);
         findViewById(R.id.btn_into_anim).setOnClickListener(this);
+        findViewById(R.id.btn_into_fragment).setOnClickListener(this);
+
+
+
     }
 
     private void initData() {
@@ -67,8 +71,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 intent.setClass(MainActivity.this, TranslateActivity.class);
 
                 break;
+            case R.id.btn_into_fragment:
+                intent.setClass(MainActivity.this, MyFragment_Activity.class);
+
+                break;
         }
-        startActivity(intent);
+
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }
