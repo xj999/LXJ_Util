@@ -45,10 +45,6 @@
             android:name=".TranslateActivity"
             android:label="@string/title_activity_translate">
         </activity>
-        <activity
-            android:name=".MyFragment_Activity"
-            android:label="@string/title_activity_translate">
-        </activity>
 
 
     </application>

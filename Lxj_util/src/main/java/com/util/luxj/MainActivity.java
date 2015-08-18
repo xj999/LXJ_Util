@@ -71,10 +71,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 intent.setClass(MainActivity.this, TranslateActivity.class);
 
                 break;
-            case R.id.btn_into_fragment:
-                intent.setClass(MainActivity.this, MyFragment_Activity.class);
-
-                break;
         }
 
         try {
