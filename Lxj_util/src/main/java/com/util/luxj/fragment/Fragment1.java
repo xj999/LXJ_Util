@@ -21,7 +21,6 @@ public class Fragment1 extends Fragment {
         bundle.putString("hello", s);
         newFragment.setArguments(bundle);
         return newFragment;
-
     }
 
     @Override

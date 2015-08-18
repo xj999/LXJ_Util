@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.util.luxj.MyFragment_Activity;
 import com.util.luxj.R;
 
 /**
