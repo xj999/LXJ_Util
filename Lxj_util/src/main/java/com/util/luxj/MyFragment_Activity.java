@@ -26,9 +26,6 @@ public class MyFragment_Activity extends FragmentActivity {
     ArrayList<View> viewContainter = new ArrayList<View>();
     ArrayList<String> titleContainer = new ArrayList<String>();
     private ArrayList<Fragment> list;
-    private int currIndex;//当前页卡编号
-    private int bmpW;//横线图片宽度
-    private int offset;//图片移动的偏移量
     private ArrayList<TaskType> tasklist;
     public static MyFragment_Activity instance;
 
@@ -91,7 +88,6 @@ public class MyFragment_Activity extends FragmentActivity {
     }
 
     public class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
-        private int one = offset * 2 + bmpW;//两个相邻页面的偏移量
 
         @Override
         public void onPageScrolled(int arg0, float arg1, int arg2) {
@@ -113,25 +109,10 @@ public class MyFragment_Activity extends FragmentActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     /**
      * 模拟网络回调的题目
