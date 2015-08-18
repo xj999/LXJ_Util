@@ -3,6 +3,7 @@ package com.util.luxj;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +16,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         initData();
         initView();
 
+        Log.e("", "this is test   branch  ");
+
     }
 
     private void initView() {
@@ -23,7 +26,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.btn_into_camera).setOnClickListener(this);
         findViewById(R.id.btn_into_anim).setOnClickListener(this);
         findViewById(R.id.btn_into_fragment).setOnClickListener(this);
-
 
 
     }
