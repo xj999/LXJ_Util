@@ -14,7 +14,6 @@ import com.util.luxj.R;
  */
 public class Fragment2 extends Fragment implements View.OnClickListener {
     private View view;
-    private MyFragment_Activity activity;
 
     public static Fragment2 newInstance(String s) {
         Fragment2 newFragment = new Fragment2();
@@ -33,7 +32,6 @@ public class Fragment2 extends Fragment implements View.OnClickListener {
             TextView textView = (TextView) view.findViewById(R.id.te);
             textView.setText(args.getString("hello"));
         }
-        activity = MyFragment_Activity.newInstance();
         view.findViewById(R.id.tz).setOnClickListener(this);
         return view;
     }
@@ -42,8 +40,6 @@ public class Fragment2 extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tz:
-                activity.selectPage(4);
-
                 break;
         }
     }

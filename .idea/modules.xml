@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/LXJ_Util.iml" filepath="$PROJECT_DIR$/LXJ_Util.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lxj_util/Lxj_util.iml" filepath="$PROJECT_DIR$/Lxj_util/Lxj_util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/material/material.iml" filepath="$PROJECT_DIR$/material/material.iml" />
     </modules>
   </component>
 </project>

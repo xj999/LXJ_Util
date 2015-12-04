@@ -25,7 +25,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.btn_into_album).setOnClickListener(this);
         findViewById(R.id.btn_into_camera).setOnClickListener(this);
         findViewById(R.id.btn_into_anim).setOnClickListener(this);
-        findViewById(R.id.btn_into_fragment).setOnClickListener(this);
 
 
     }
@@ -71,7 +70,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.btn_into_anim:
                 intent.setClass(MainActivity.this, TranslateActivity.class);
-
                 break;
         }
 

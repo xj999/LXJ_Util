@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,29 +8,38 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.util.luxj.MainActivity">
+    tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btn_into_sql"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/main_sql" />
+        android:text="@string/hello_world" />
 
     <Button
-        android:id="@+id/btn_into_album"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/main_album" />
+        android:background="@drawable/ripple_bg"
+        android:text="动画测试" />
 
     <Button
-        android:id="@+id/btn_into_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/main_camera" />
+        android:layout_margin="10dp"
+        android:text="动画测试" />
 
     <Button
-        android:id="@+id/btn_into_anim"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/main_anim" />
+        android:layout_margin="20dp"
+        android:colorControlHighlight="#f74d4d"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:text="动画测试" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:background="#f74d4d"
+        android:colorControlHighlight="#3F4FFE"
+        android:text="动画测试" />
 </LinearLayout>

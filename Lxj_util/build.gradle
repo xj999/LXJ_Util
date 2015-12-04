@@ -55,7 +55,7 @@ android {
     }
 
     productFlavors.all {
-        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        flavor -> flavor.manifestPlaceholders = [CHANNEL_VALUE: name]
     }
     buildTypes {
         release {
@@ -64,15 +64,15 @@ android {
             zipAlignEnabled true
             proguardFiles 'proguard-rules.pro'
             shrinkResources true
-//            applicationVariants.all { variant ->
-//                variant.outputs.each { output ->
-//                    def outputFile = output.outputFile
-//                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
-//                        def fileName = "MyUtil_${defaultConfig.versionName}_${releaseTime()}.apk"
-//                        output.outputFile = new File(outputFile.parent, fileName)
-//                    }
-//                }
-//            }
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        def fileName = "MyUtil_${defaultConfig.versionName}_${releaseTime()}.apk"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
         }
     }
 }
