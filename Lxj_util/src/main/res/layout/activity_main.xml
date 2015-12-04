@@ -32,4 +32,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/main_anim" />
+    <Button
+        android:id="@+id/btn_into_branch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/test_branch" />
 </LinearLayout>
